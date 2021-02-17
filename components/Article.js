@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Test',
+    date: 'Febraury 16, 2021',
+    firstParagraph: `Boggarts lavender robes, Hermione Granger Fantastic Beasts and Where to Find Them. Bee in your bonnet Hand of Glory elder wand, spectacles House Cup Bertie Bott’s Every Flavor Beans Impedimenta. Stunning spells tap-dancing spider Slytherin’s Heir mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma and Parvati Sorting Hat Minister of Magic blue turban remember my last. `,
+
+    secondParagraph: `Grievous fett calamari anakin skywalker hutt.Alderaan darth kenobi darth r2- d2 windu mothma.Sidious darth calamari moff.Wampa mothma sith wedge solo mara.Darth gonk maul sith moff chewbacca palpatine mace amidala.C - 3po solo skywalker anakin yoda leia.Maul wampa bespin watto jade ewok darth jabba.Lando dantooine moff k - 3po dantooine luke.Fisto mandalore darth wedge c - 3p0 ahsoka.Secura moff palpatine fett.Anakin sith darth darth.Moff solo leia ben ponda jade.Binks jango aayla skywalker skywalker cade.Mustafar darth ventress anakin watto.Yavin jawa sebulba owen jinn tatooine sith organa.`,
+
+    thirdParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet, consectetur adipiscing elit. Squirtle Lorem ipsum dolor sit amet, consectetur adipiscing elit. Wartortle Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blastoise Lorem ipsum dolor sit amet, consectetur adipiscing elit. Caterpie Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metapod Lorem ipsum dolor sit amet, consectetur adipiscing elit. Butterfree Lorem ipsum dolor sit amet, consectetur adipiscing elit. Weedle Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kakuna Lorem ipsum dolor sit amet, consectetur adipiscing elit. Beedrill Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
   }
 ];
 
@@ -103,14 +112,66 @@ const data = [
     <span class="expandButton">+</span>
   </div>
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
-  Step 3: Don't forget to return something from your function!
+Step 3: Don't forget to return something from your function!
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
+Step 4: Outside your function now, loop over the data. At each iteration you'll use your component to create a div.article element and append it to the DOM inside div.articles (see index.html).
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+//{title / date / firstParagraph / secondParagraph / thirdParagraph}
+const articleMaker = (object) =>{
+  const articleDiv = document.createElement('div'); //create a new element
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleOne = document.createElement('p');
+  const articleTwo = document.createElement('p');
+  const articleThree = document.createElement('p');
+  const articleSpan = document.createElement('span');
+
+  articleDiv.appendChild(articleTitle); //appendsChild to the parent element of article
+  articleDiv.appendChild(articleDate);
+  articleDiv.appendChild(articleOne);
+  articleDiv.appendChild(articleTwo);
+  articleDiv.appendChild(articleThree);
+  articleDiv.appendChild(articleSpan);
+
+ 
+  articleDiv.classList.add('article')
+  articleSpan.classList.add('expandButton'); //adds a class
+  articleDate.classList.add('date'); //adds a class
+
+  articleTitle.textContent = object.title;
+  articleDate.textContent = object.date;
+  articleOne.textContent = object.firstParagraph;
+  articleTwo.textContent = object.secondParagraph;
+  articleThree.textContent = object.thirdParagraph;
+  articleSpan.textContent = '+'; // adds a '+' to the expand element
+
+  articleSpan.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open')
+  })
+
+
+return articleDiv //returns the created element with all children
+}
+
+//forEach loop
+
+data.forEach((item) => {
+  //grabbing the .article from HTML
+  const articleMakerTwo = document.querySelector('div.articles')
+
+  //append the function to articleMaker
+ articleMakerTwo.appendChild(articleMaker(item))
+})
+
+
+
+
+
