@@ -38,7 +38,7 @@ const menuMaker = (data) => {
   const ul = document.createElement('ul')
 
 //adding classes
-div.classlist.add('menu')
+div.classList.add('menu')
 
 //append ul to div
 div.appendChild(ul)
